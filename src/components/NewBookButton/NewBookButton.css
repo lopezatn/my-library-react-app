@@ -1,0 +1,18 @@
+.new-book {
+  margin: 20px;
+}
+
+button {
+  padding: 7px 12px;
+  background-color: #dafffb;
+  color: #04364a;
+  border: 1px solid #04364a;
+  border-radius: 12px;
+  transition: 0.5s ease-in-out;
+}
+
+button:hover {
+  background-color: #04364a;
+  color: #dafffb;
+  border-color: #dafffb;
+}

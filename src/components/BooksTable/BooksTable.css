@@ -1,0 +1,30 @@
+.table-container {
+    padding: 0;
+    max-width: 400px;
+    background-color: #f2f2f2;
+    margin: 20px auto;
+    border: 1px solid #04364a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #04364a;
+  }
+  
+  .table-container tr:hover {
+    background-color: #ffffff;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+    color: #04364a;
+  }
+  
+  th {
+    background-color: #64ccc5;
+    color: #04364a;
+  }
