@@ -1,12 +1,25 @@
 import React from "react";
 import './AddBookForm.css';
+import { useSelector, useDispatch } from "react-redux";
+import { addBook, removeBook } from "../../features/books/bookSlice";
+
 
 function AddBookForm() {
-  const createBook = () => {};
+
+  const createBook = (e) => {
+    e.preventDefault();
+
+    const author = e.target.author.value;
+    const book = e.target.book.value;     
+    const pages = e.target.pages.value;
+    const isRead = e.target.isRead.checked;
+
+
+  };
 
   return (
     <>
-      <form id="addBookForm" className="add-book-form">
+      <form id="addBookForm" className="add-book-form" onSubmit={createBook}>
         <div>
           <label htmlFor="author">Author:</label>
           <br />
@@ -30,7 +43,7 @@ function AddBookForm() {
           <br />
           <input type="checkbox" id="isRead" />
         </div>
-        <button onClick={() => createBook()}>Add Book</button>
+        <button type="submit">Add Book</button>
       </form>
     </>
   );
