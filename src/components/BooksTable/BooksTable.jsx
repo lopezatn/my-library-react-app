@@ -9,32 +9,30 @@ function BooksTable() {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <div className="table-container">
-        <table id="books-table">
-          <thead>
-            <tr>
-              <th>Author</th>
-              <th>Title</th>
-              <th>Pages</th>
-              <th>Read</th>
-              <th>Remove</th>
+    <div className="table-container">
+      <table id="books-table">
+        <thead>
+          <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Pages</th>
+            <th>Read</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {books.map((book) => (
+            <tr key={book.id}>
+              <td>{book.author}</td>
+              <td>{book.title}</td>
+              <td>{book.pages}</td>
+              <td><IsReadButton isRead={book.isRead} id={book.id}/></td>
+              <td><DeleteItemButton id={book.id}/></td>
             </tr>
-          </thead>
-          <tbody>
-            {books.map((book) => (
-              <tr row-id={book.id}>
-                <td>{book.author}</td>
-                <td>{book.title}</td>
-                <td>{book.pages}</td>
-                <td><IsReadButton isRead={book.isRead} id={book.id}/></td>
-                <td><DeleteItemButton id={book.id}/></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

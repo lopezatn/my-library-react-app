@@ -4,11 +4,9 @@ import './Footer.css';
 
 function Footer() {
   return (
-    <>
       <footer>
         <p>© The Kreativs</p>
       </footer>
-    </>
   );
 }
 

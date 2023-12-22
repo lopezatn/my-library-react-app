@@ -5,12 +5,6 @@ import { addBook } from "../../features/books/bookSlice";
 
 function AddBookForm() {
   const dispatch = useDispatch();
-  // const [myBook, setMyBook] = useState({
-  //   author: "",
-  //   book: "",
-  //   pages: "",
-  //   isRead: false,
-  // });
 
   const createBook = (e) => {
     e.preventDefault();
@@ -21,21 +15,12 @@ function AddBookForm() {
     const isRead = e.target.isRead.checked;
     const id = Math.floor(Math.random() * 900);
 
-    // setMyBook({
-    //   author: author,
-    //   book: book,
-    //   pages: pages,
-    //   isRead: isRead,
-    // });
-
     dispatch(addBook({ author, title, pages, isRead, id }));
-    // console.log('Object book: ', myBook);
 
     e.target.reset();
   };
 
   return (
-    <>
       <form id="addBookForm" className="add-book-form" onSubmit={createBook}>
         <div>
           <label htmlFor="author">Author:</label>
@@ -62,7 +47,6 @@ function AddBookForm() {
         </div>
         <button type="submit">Add Book</button>
       </form>
-    </>
   );
 }
 

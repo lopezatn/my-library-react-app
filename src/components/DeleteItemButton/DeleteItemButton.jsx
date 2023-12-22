@@ -11,9 +11,7 @@ function DeleteItemButton(props) {
     }
 
   return (
-    <>
     <button onClick={removeItem}>DELETE</button>
-    </>
     )
 }
 

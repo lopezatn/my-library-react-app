@@ -10,9 +10,7 @@ function IsReadButton(props) {
   }
 
   return (
-    <>
       <input type="checkbox" onChange={inputHandleChange} checked={props.isRead}></input>
-    </>
   )
 }
 

@@ -8,13 +8,11 @@ function NewBookButton() {
   };
 
   return (
-    <>
       <div className="new-book">
         <button id="toggleButton" onClick={() => toggleFormVisibility()}>
           New Book
         </button>
       </div>
-    </>
   );
 }
 
