@@ -1,12 +1,11 @@
 import React from "react";
 import "./BooksTable.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import IsReadButton from "../IsReadButton/IsReadButton";
 import DeleteItemButton from "../DeleteItemButton/DeleteItemButton";
 
 function BooksTable() {
   const books = useSelector((state) => state.books.booksList);
-  const dispatch = useDispatch();
 
   return (
     <div className="table-container">
