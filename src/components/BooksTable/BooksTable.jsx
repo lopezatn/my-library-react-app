@@ -1,7 +1,8 @@
 import React from "react";
 import "./BooksTable.css";
 import { useDispatch, useSelector } from "react-redux";
-import IsReadButton from "../isReadButton/IsReadButton";
+import IsReadButton from "../IsReadButton/IsReadButton";
+import DeleteItemButton from "../DeleteItemButton/DeleteItemButton";
 
 function BooksTable() {
   const books = useSelector((state) => state.books.booksList);
@@ -27,7 +28,7 @@ function BooksTable() {
                 <td>{book.title}</td>
                 <td>{book.pages}</td>
                 <td><IsReadButton isRead={book.isRead} id={book.id}/></td>
-                <td></td>
+                <td><DeleteItemButton id={book.id}/></td>
               </tr>
             ))}
           </tbody>
