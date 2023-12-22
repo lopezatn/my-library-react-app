@@ -1,20 +1,37 @@
 import React from "react";
-import './AddBookForm.css';
-import { useSelector, useDispatch } from "react-redux";
-import { addBook, removeBook } from "../../features/books/bookSlice";
-
+import "./AddBookForm.css";
+import { useDispatch } from "react-redux";
+import { addBook } from "../../features/books/bookSlice";
 
 function AddBookForm() {
+  const dispatch = useDispatch();
+  // const [myBook, setMyBook] = useState({
+  //   author: "",
+  //   book: "",
+  //   pages: "",
+  //   isRead: false,
+  // });
 
   const createBook = (e) => {
     e.preventDefault();
 
     const author = e.target.author.value;
-    const book = e.target.book.value;     
-    const pages = e.target.pages.value;
+    const book = e.target.book.value;
+    const pages = parseInt(e.target.pages.value);
     const isRead = e.target.isRead.checked;
+    const id = Math.floor(Math.random() * 900);
 
+    // setMyBook({
+    //   author: author,
+    //   book: book,
+    //   pages: pages,
+    //   isRead: isRead,
+    // });
 
+    dispatch(addBook({ author, book, pages, isRead, id }));
+    // console.log('Object book: ', myBook);
+
+    e.target.reset();
   };
 
   return (
