@@ -16,7 +16,7 @@ function AddBookForm() {
     e.preventDefault();
 
     const author = e.target.author.value;
-    const book = e.target.book.value;
+    const title = e.target.book.value;
     const pages = parseInt(e.target.pages.value);
     const isRead = e.target.isRead.checked;
     const id = Math.floor(Math.random() * 900);
@@ -28,7 +28,7 @@ function AddBookForm() {
     //   isRead: isRead,
     // });
 
-    dispatch(addBook({ author, book, pages, isRead, id }));
+    dispatch(addBook({ author, title, pages, isRead, id }));
     // console.log('Object book: ', myBook);
 
     e.target.reset();
