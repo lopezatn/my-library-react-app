@@ -29,10 +29,19 @@ export const bookSlice = createSlice({
           book.isRead = !book.isRead;
         }
       }
+    },
+    editBook: (state, action) => {
+      for (let i = 0; i < state.booksList.length; i++) {
+        const book = state.booksList[i];
+        if (book.id === action.payload.id) {
+          state.booksList.splice(i, 1, action.payload);
+          break;
+        }
+      }
     }
   },
 });
 
-export const { changeState, addBook, removeBook } = bookSlice.actions;
+export const { changeState, addBook, removeBook, editBook } = bookSlice.actions;
 
 export default bookSlice.reducer;
