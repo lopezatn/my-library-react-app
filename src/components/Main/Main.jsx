@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import BooksTable from "../BooksTable/BooksTable";
 import NewBookButton from "../NewBookButton/NewBookButton";
 import AddBookForm from "../AddBookForm/AddBookForm";
+import EditBookForm from "../EditBookForm/EditBookForm";
 
 export default function Main() {
   return (
@@ -14,6 +15,7 @@ export default function Main() {
       <main>
         <NewBookButton />
         <AddBookForm />
+        <EditBookForm />
         <BooksTable />
       </main>
 

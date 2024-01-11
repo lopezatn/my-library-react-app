@@ -3,7 +3,7 @@ import "./BooksTable.css";
 import { useSelector } from "react-redux";
 import IsReadButton from "../IsReadButton/IsReadButton";
 import DeleteItemButton from "../DeleteItemButton/DeleteItemButton";
-import EditItemButton from "../EditItemButton/EditItemButton";
+import EditBookButton from "../EditBookButton/EditBookButton";
 
 function BooksTable() {
   const books = useSelector((state) => state.books.booksList);
@@ -29,7 +29,7 @@ function BooksTable() {
               <td>{book.pages}</td>
               <td><IsReadButton isRead={book.isRead} id={book.id}/></td>
               <td><DeleteItemButton id={book.id}/></td>
-              <td><EditItemButton book={book}/></td>
+              <td><EditBookButton book={book}/></td>
             </tr>
           ))}
         </tbody>

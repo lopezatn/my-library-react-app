@@ -7,23 +7,12 @@ import { renderWithProviders } from '../../../tests/test-utils';
 
 
 
-xit("should render 5 items of table data", () => {
+it("should render 5 items of table data", () => {
     renderWithProviders(
         <BooksTable/>
     )
     const tableData = screen.getAllByRole("cell");
-    expect(tableData).toHaveLength(5);
-});
-
-
-xit("should render 5 items of table data", () => {
-    render(
-    <Provider store={store}>
-        <BooksTable/>
-    </Provider>
-    );
-    const tableData = screen.getAllByRole("cell");
-    expect(tableData).toHaveLength(5);
+    expect(tableData).toHaveLength(6);
 });
 
 // test("should render 3 books on the table", () => {
