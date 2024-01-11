@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import { editBook } from "../../features/books/bookSlice";
 
 function EditBookForm({book}) {
+
   const dispatch = useDispatch();
   const [author, setAuthor] = useState(book.author);
   const [title, setTitle] = useState(book.title);
   const [pages, setPages] = useState(book.pages);
 
+  console.log(book);
   const saveBook = (e) => {
     e.preventDefault();
 
@@ -36,6 +38,7 @@ function EditBookForm({book}) {
           type="text"
           id="author"
           data-testid="author"
+          value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
       </div>
@@ -47,6 +50,7 @@ function EditBookForm({book}) {
           type="text"
           id="book"
           data-testid="title"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
@@ -58,6 +62,7 @@ function EditBookForm({book}) {
           type="number"
           id="pages"
           data-testid="pages"
+          value={pages}
           onChange={(e) => setPages(parseInt(e.target.value))}
         />
       </div>
