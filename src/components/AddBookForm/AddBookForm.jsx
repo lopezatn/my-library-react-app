@@ -3,7 +3,7 @@ import "./AddBookForm.css";
 import { useDispatch } from "react-redux";
 import { addBook } from "../../features/books/bookSlice";
 
-function AddBookForm() {
+function AddBookForm({toggle}) {
   const dispatch = useDispatch();
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
@@ -38,6 +38,7 @@ function AddBookForm() {
       pages > 0 && typeof pages === 'number')
     ) {
       dispatch(addBook({ author, title, pages, isRead, id }));
+      alert('Book added succesfully, add another book or cancel to go back.');
       restartFields();
     } else {
       alert(
@@ -83,7 +84,7 @@ function AddBookForm() {
         />
       </div>
 
-      <div>
+      <div className="is-read-button">
         <label htmlFor="isRead">Read?</label>
         <br />
         <input
@@ -96,6 +97,7 @@ function AddBookForm() {
       <button type="submit" data-testid="add-book" disabled={isDisabled}>
         Add Book
       </button>
+      <button onClick={() => toggle(false)}>Cancel</button>
     </form>
   );
 }

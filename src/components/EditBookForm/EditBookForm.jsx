@@ -18,6 +18,7 @@ function EditBookForm({book, toggle}) {
       pages > 0 && typeof pages === "number")
     ) {
       dispatch(editBook({ ...book, author, title, pages }));
+      toggle(false);
     } else {
       alert(
         "Seems like one or more fields is missing information, please check."

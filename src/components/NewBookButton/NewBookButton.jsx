@@ -1,18 +1,19 @@
-import React from "react";
-import './NewBookButton.css';
+import React, { useState } from "react";
+import "./NewBookButton.css";
+import AddBookForm from "../AddBookForm/AddBookForm";
 
 function NewBookButton() {
-  const toggleFormVisibility = () => {
-    let form = document.getElementById("addBookForm");
-    form.style.display = form.style.display === "block" ? "none" : "block";
-  };
+  const [toggleForm, setToggleForm] = useState(false);
 
   return (
-      <div className="new-book">
-        <button id="toggleButton" onClick={() => toggleFormVisibility()}>
-          New Book
-        </button>
-      </div>
+    <div className="new-book-button-container">
+      <button onClick={() => setToggleForm(true)}>New Book</button>
+      {toggleForm && (
+        <div className="overlay">
+          <AddBookForm toggle={setToggleForm} />
+        </div>
+      )}
+    </div>
   );
 }
 

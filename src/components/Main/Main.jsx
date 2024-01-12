@@ -13,9 +13,8 @@ export default function Main() {
       <Header />
 
       <main>
-        <NewBookButton />
-        <AddBookForm />
         <BooksTable />
+        <NewBookButton />
       </main>
 
       <Footer />
