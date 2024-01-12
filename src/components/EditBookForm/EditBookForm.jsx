@@ -3,14 +3,12 @@ import "./EditBookForm.css";
 import { useDispatch } from "react-redux";
 import { editBook } from "../../features/books/bookSlice";
 
-function EditBookForm({book}) {
-
+function EditBookForm({book, toggle}) {
   const dispatch = useDispatch();
   const [author, setAuthor] = useState(book.author);
   const [title, setTitle] = useState(book.title);
   const [pages, setPages] = useState(book.pages);
 
-  console.log(book);
   const saveBook = (e) => {
     e.preventDefault();
 
@@ -69,6 +67,10 @@ function EditBookForm({book}) {
 
       <button type="submit" data-testid="save-book">
         Save Book
+      </button>
+
+      <button type="button" onClick={() => toggle(false)}>
+        Cancel
       </button>
     </form>
   );

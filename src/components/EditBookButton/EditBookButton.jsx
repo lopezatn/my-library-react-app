@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "./EditBookButton.css";
 import EditBookForm from "../EditBookForm/EditBookForm";
 
-function EditBookButton({book}) {
+function EditBookButton({ book }) {
+  const [toggleForm, setToggleForm] = useState(false);
 
-  const toggleEditFormVisibility = () => {
-    let form = document.getElementById("editBookForm");
-    form.style.display = form.style.display === "block" ? "none" : "block";
-  };
-
-  console.log(book);
   return (
-    <div className="edit-book">
-      <button onClick={() => toggleEditFormVisibility()}>
-        EDIT BOOK
-      </button>
-      <EditBookForm book={book}/>
+    <div>
+      <button onClick={() => setToggleForm(true)}>EDIT</button>
+      {toggleForm && (
+        <div className="overlay">
+          <EditBookForm book={book} toggle={setToggleForm} />
+        </div>
+      )}
     </div>
   );
 }

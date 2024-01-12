@@ -1,13 +1,14 @@
 .edit-book-form {
-    display: none;
-    width: 250px;
+    position: absolute;
+    width: 50%;
+    top: 20vh;
+    left: 50vh;
+    height: 30vh;
     padding: 7px;
     background-color: #64ccc5;
     color: #04364a;
     border-radius: 12px;
     box-shadow: 3px 3px 3px #04364a;
-    position: absolute;
-    z-index: 3;
   }
   
   input {
@@ -18,4 +19,3 @@
     color: #04364a;
     background-color: #dafffb;
   }
-  
