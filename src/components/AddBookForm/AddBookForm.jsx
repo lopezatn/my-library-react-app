@@ -1,52 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AddBookForm.css";
 import { useDispatch } from "react-redux";
 import { addBook } from "../../features/books/bookSlice";
 
-function AddBookForm({toggle}) {
+function AddBookForm({ toggle }) {
   const dispatch = useDispatch();
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [pages, setPages] = useState(0);
   const [isRead, setIsRead] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [showErrorMessage, setShowErrorMessage] = useState(null);
   const id = Math.floor(Math.random() * 900);
 
-  useEffect(() => {
-      if (
-        (author.length > 1 && typeof author === 'string',
-        title.length > 1 && typeof title === 'string',
-        pages > 0 && typeof pages === 'number')
-      ) {
-        setIsDisabled(false);
-      }
-      
-  },[author, title, pages]);
-
   const restartFields = () => {
-    setAuthor('');
-    setTitle('');
+    setAuthor("");
+    setTitle("");
     setPages(0);
-  }
+  };
 
   const createBook = (e) => {
     e.preventDefault();
 
     if (
-      (author.length > 1 && typeof author === 'string',
-      title.length > 1 && typeof title === 'string',
-      pages > 0 && typeof pages === 'number')
+      author.length > 1 &&
+      typeof author === "string" &&
+      title.length > 1 &&
+      typeof title === "string" &&
+      pages > 0 &&
+      typeof pages === "number"
     ) {
       dispatch(addBook({ author, title, pages, isRead, id }));
-      alert('Book added succesfully, add another book or cancel to go back.');
       restartFields();
+      setShowErrorMessage(false);
     } else {
-      alert(
-        "Seems like one or more fields is missing information, please check."
-      );
+      setShowErrorMessage(true);
     }
 
-    e.target.reset();
+    // e.target.reset();
   };
 
   return (
@@ -94,7 +84,21 @@ function AddBookForm({toggle}) {
           onChange={(e) => setIsRead(e.target.checked)}
         />
       </div>
-      <button type="submit" data-testid="add-book" disabled={isDisabled}>
+
+      {showErrorMessage !== null
+        ? showErrorMessage !== false
+          ? (
+            <p>
+              Seems like one or more fields are missing information, please check.
+            </p>
+          ) 
+          : (
+            <p>Book added successfully! Click Cancel to go back.</p>
+          )
+        : null
+      }
+
+      <button type="submit" data-testid="add-book">
         Add Book
       </button>
       <button onClick={() => toggle(false)}>Cancel</button>

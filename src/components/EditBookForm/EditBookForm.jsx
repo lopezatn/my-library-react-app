@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./EditBookForm.css";
 import { useDispatch } from "react-redux";
 import { editBook } from "../../features/books/bookSlice";
@@ -8,21 +8,20 @@ function EditBookForm({book, toggle}) {
   const [author, setAuthor] = useState(book.author);
   const [title, setTitle] = useState(book.title);
   const [pages, setPages] = useState(book.pages);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const saveBook = (e) => {
     e.preventDefault();
 
     if (
-      (author.length > 1 && typeof author === "string",
-      title.length > 1 && typeof title === "string",
+      (author.length > 1 && typeof author === "string" &&
+      title.length > 1 && typeof title === "string" &&
       pages > 0 && typeof pages === "number")
     ) {
       dispatch(editBook({ ...book, author, title, pages }));
       toggle(false);
     } else {
-      alert(
-        "Seems like one or more fields is missing information, please check."
-      );
+      setErrorMessage(true);
     }
 
     e.target.reset();
@@ -65,7 +64,11 @@ function EditBookForm({book, toggle}) {
           onChange={(e) => setPages(parseInt(e.target.value))}
         />
       </div>
-
+      { errorMessage ? 
+      <p className="alert">Seems like one or more fields is missing information, please check.</p> 
+      :
+      <p>Book edited successfully! Click Cancel to go back.</p>
+      }
       <button type="submit" data-testid="save-book">
         Save Book
       </button>
