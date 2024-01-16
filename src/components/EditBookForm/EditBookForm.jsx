@@ -8,7 +8,7 @@ function EditBookForm({book, toggle}) {
   const [author, setAuthor] = useState(book.author);
   const [title, setTitle] = useState(book.title);
   const [pages, setPages] = useState(book.pages);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [showErrorMessage, setShowErrorMessage] = useState(null);
 
   const saveBook = (e) => {
     e.preventDefault();
@@ -19,9 +19,9 @@ function EditBookForm({book, toggle}) {
       pages > 0 && typeof pages === "number")
     ) {
       dispatch(editBook({ ...book, author, title, pages }));
-      toggle(false);
+      setShowErrorMessage(false);
     } else {
-      setErrorMessage(true);
+      setShowErrorMessage(true);
     }
 
     e.target.reset();
@@ -64,11 +64,20 @@ function EditBookForm({book, toggle}) {
           onChange={(e) => setPages(parseInt(e.target.value))}
         />
       </div>
-      { errorMessage ? 
-      <p className="alert">Seems like one or more fields is missing information, please check.</p> 
-      :
-      <p>Book edited successfully! Click Cancel to go back.</p>
+
+      {showErrorMessage !== null
+        ? showErrorMessage !== false
+          ? (
+            <p>
+              Seems like one or more fields are missing information, please check.
+            </p>
+          ) 
+          : (
+            <p>Book edited successfully! Click Cancel to go back.</p>
+          )
+        : null
       }
+
       <button type="submit" data-testid="save-book">
         Save Book
       </button>
