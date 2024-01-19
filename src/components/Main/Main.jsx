@@ -3,9 +3,8 @@ import "./Main.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import BooksTable from "../BooksTable/BooksTable";
-import NewBookButton from "../NewBookButton/NewBookButton";
+import ToggleFormButton from "../ToggleFormButton/ToggleFormButton";
 import AddBookForm from "../AddBookForm/AddBookForm";
-import EditBookForm from "../EditBookForm/EditBookForm";
 
 export default function Main() {
   return (
@@ -14,7 +13,9 @@ export default function Main() {
 
       <main>
         <BooksTable />
-        <NewBookButton />
+        <div className="button-container">
+          <ToggleFormButton buttonText={"New Book"} FormComponent={AddBookForm} />
+        </div>
       </main>
 
       <Footer />
