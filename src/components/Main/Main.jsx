@@ -4,7 +4,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import BooksTable from "../BooksTable/BooksTable";
 import ToggleFormButton from "../ToggleFormButton/ToggleFormButton";
-import AddBookForm from "../AddBookForm/AddBookForm";
+import BookForm from "../BookForm/BookForm";
 
 export default function Main() {
   return (
@@ -14,7 +14,7 @@ export default function Main() {
       <main>
         <BooksTable />
         <div className="button-container">
-          <ToggleFormButton buttonText={"New Book"} FormComponent={AddBookForm} />
+          <ToggleFormButton buttonText={"New Book"} FormComponent={BookForm} />
         </div>
       </main>
 

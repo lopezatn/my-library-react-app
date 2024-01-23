@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import "./BookForm.css";
 import { useDispatch } from "react-redux";
-import { addBook } from "../../features/books/bookSlice";
+import { addBook, editBook } from "../../features/books/bookSlice";
 
-function BookForm({ toggle }) {
+function BookForm({ book, toggle }) {
   const dispatch = useDispatch();
-  const [author, setAuthor] = useState("");
-  const [title, setTitle] = useState("");
-  const [pages, setPages] = useState(0);
+  const [author, setAuthor] = useState(book?.author ?? "");
+  const [title, setTitle] = useState(book?.title ?? "");
+  const [pages, setPages] = useState(book?.pages ?? undefined);
   const [isRead, setIsRead] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(null);
-  const id = Math.floor(Math.random() * 900);
+  const isCreatingBook = book?.id === undefined;
+
+  console.log(isCreatingBook);
 
   const restartFields = () => {
     setAuthor("");
@@ -18,29 +20,47 @@ function BookForm({ toggle }) {
     setPages(0);
   };
 
-  const createBook = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
+    if (isCreatingBook) {
+      e.preventDefault();
+      const newId = Math.floor(Math.random() * 900);
 
-    if (
-      author.length > 1 &&
-      typeof author === "string" &&
-      title.length > 1 &&
-      typeof title === "string" &&
-      pages > 0 &&
-      typeof pages === "number"
-    ) {
-      dispatch(addBook({ author, title, pages, isRead, id }));
-      restartFields();
-      setShowErrorMessage(false);
+      if (
+        author.length > 1 &&
+        typeof author === "string" &&
+        title.length > 1 &&
+        typeof title === "string" &&
+        pages !== undefined &&
+        typeof pages === "number"
+      ) {
+        dispatch(addBook({ author, title, pages, isRead, id: newId }));
+        restartFields();
+        setShowErrorMessage(false);
+      } else {
+        setShowErrorMessage(true);
+      }
     } else {
-      setShowErrorMessage(true);
-    }
+      e.preventDefault();
 
-    // e.target.reset();
+      if (
+        author.length > 1 &&
+        typeof author === "string" &&
+        title.length > 1 &&
+        typeof title === "string" &&
+        pages !== undefined &&
+        typeof pages === "number"
+      ) {
+        dispatch(editBook({ ...book, author, title, pages }));
+        setShowErrorMessage(false);
+      } else {
+        setShowErrorMessage(true);
+      }
+
+    }
   };
 
   return (
-    <form id="bookForm" className="book-form" onSubmit={createBook}>
+    <form id="bookForm" className="book-form" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="author">Author:</label>
         <br />
@@ -48,6 +68,7 @@ function BookForm({ toggle }) {
           type="text"
           id="author"
           data-testid="author"
+          value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
       </div>
@@ -59,6 +80,7 @@ function BookForm({ toggle }) {
           type="text"
           id="book"
           data-testid="title"
+          value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
@@ -70,33 +92,48 @@ function BookForm({ toggle }) {
           type="number"
           id="pages"
           data-testid="pages"
+          value={pages}
           onChange={(e) => setPages(parseInt(e.target.value))}
         />
       </div>
 
-      <div className="is-read-button">
-        <label htmlFor="isRead">Read?</label>
-        <br />
-        <input
-          type="checkbox"
-          id="isRead"
-          data-testid="read"
-          onChange={(e) => setIsRead(e.target.checked)}
-        />
-      </div>
+      {/* This is hidden if there is no book ID */}
+      {isCreatingBook ? (
+        <div className="is-read-button">
+          <label htmlFor="isRead">Read?</label>
+          <br />
+          <input
+            type="checkbox"
+            id="isRead"
+            data-testid="read"
+            onChange={(e) => setIsRead(e.target.checked)}
+          />
+        </div>
+      ) : ''}
 
-      {showErrorMessage !== null ? (
+      {isCreatingBook ? (
+        showErrorMessage !== null ? (
+          showErrorMessage !== false ? (
+            <p>
+              Seems like one or more fields are missing information, please
+              check.
+            </p>
+          ) : (
+            <p>Book added successfully! Click Cancel to go back.</p>
+          )
+        ) : ''
+      ) : showErrorMessage !== null ? (
         showErrorMessage !== false ? (
           <p>
             Seems like one or more fields are missing information, please check.
           </p>
         ) : (
-          <p>Book added successfully! Click Cancel to go back.</p>
+          <p>Book edited successfully! Click Cancel to go back.</p>
         )
-      ) : null}
+      ) : ''}
 
-      <button type="submit" data-testid="add-book">
-        Add Book
+      <button type="submit">
+        {isCreatingBook ? "Add Book" : "Edit Book"}
       </button>
       <button onClick={() => toggle(false)}>Cancel</button>
     </form>

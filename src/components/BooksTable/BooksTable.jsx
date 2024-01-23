@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import IsReadButton from "../IsReadButton/IsReadButton";
 import DeleteItemButton from "../DeleteItemButton/DeleteItemButton";
 import ToggleFormButton from "../ToggleFormButton/ToggleFormButton";
-import EditBookForm from "../EditBookForm/EditBookForm";
+import BookForm from "../BookForm/BookForm";
 
 function BooksTable() {
   const books = useSelector((state) => state.books.booksList);
@@ -30,7 +30,7 @@ function BooksTable() {
               <td>{book.pages}</td>
               <td><IsReadButton isRead={book.isRead} id={book.id}/></td>
               <td><DeleteItemButton id={book.id}/></td>
-              <td><ToggleFormButton book={book} buttonText={"EDIT"} FormComponent={EditBookForm}/></td>
+              <td><ToggleFormButton book={book} buttonText={"EDIT"} FormComponent={BookForm}/></td>
             </tr>
           ))}
         </tbody>
