@@ -24,10 +24,10 @@ function BooksTable() {
         </thead>
         <tbody>
           {books.map((book) => (
-            <tr key={book.id}>
-              <td>{book.author}</td>
-              <td>{book.title}</td>
-              <td>{book.pages}</td>
+            <tr key={book.id} data-testid="book-testid">
+              <td data-testid="book-author-testid">{book.author}</td>
+              <td data-testid="book-title-testid">{book.title}</td>
+              <td data-testid="book-pages-testid">{book.pages}</td>
               <td><IsReadButton isRead={book.isRead} id={book.id}/></td>
               <td><DeleteItemButton id={book.id}/></td>
               <td><ToggleFormButton book={book} buttonText={"EDIT"} FormComponent={BookForm}/></td>

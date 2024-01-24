@@ -1,57 +1,48 @@
-import React from 'react';
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import BooksTable from './BooksTable';
-import { Provider } from 'react-redux';
-import store from '../../redux/store';
-import { renderWithProviders } from '../../../tests/test-utils';
+import BooksTable from "./BooksTable";
+import { renderWithProviders } from "../../utils/test-utils";
 
+const book = {
+  title: "some title",
+  author: "some author",
+  pages: 666,
+  id: 666,
+  isRead: true,
+};
 
+const initialReduxState = {
+  books: {
+    booksList: [book],
+  },
+};
 
-it("should render 5 items of table data", () => {
-    renderWithProviders(
-        <BooksTable/>
-    )
+describe("BooksTable", () => {
+  it("should render 6 items of table data", () => {
+    renderWithProviders(<BooksTable />, { preloadedState: initialReduxState });
     const tableData = screen.getAllByRole("cell");
     expect(tableData).toHaveLength(6);
+  });
+
+  it("should render given book title", () => {
+    const { getByTestId } = renderWithProviders(<BooksTable />, {
+      preloadedState: initialReduxState,
+    });
+    const renderedBookTitle = getByTestId("book-title-testid");
+    expect(renderedBookTitle.innerHTML).toBe(book.title);
+  });
+
+  it("should render the correct primitive values", () => {
+    renderWithProviders(<BooksTable />, {
+      preloadedState: initialReduxState,
+    });
+
+    expect(typeof book.title).toBe("string");
+    expect(typeof book.author).toBe("string");
+    expect(typeof book.pages).toBe("number");
+    expect(typeof book.id).toBe("number");
+    expect(typeof book.isRead).toBe("boolean");
+  });
+
+  
 });
-
-// test("should render 3 books on the table", () => {
-//     render(
-//     <Provider store={store}>
-//         <BooksTable/>
-//     </Provider>
-//     );
-//     const books = useSelector((state) => state.books.booksList);
-//     dispatch = useDispatch();
-    
-//     const author = "A string";
-//     const title = "A string";
-//     const pages = 123;
-//     const isRead = false;
-//     const id = 55;
-
-//     dispatch(addBook({ author, title, pages, isRead, id }));
-
-
-// });
-
-// test("should check the book data-type", () => {
-//     render(
-//     <Provider store={store}>
-//         <BooksTable/>
-//     </Provider>
-//     );
-//     const books = useSelector((state) => state.books.booksList);
-//     dispatch = useDispatch();
-    
-//     const author = "A string";
-//     const title = "A string";
-//     const pages = 123;
-//     const isRead = false;
-//     const id = 55;
-
-
-//     dispatch(addBook({ author, title, pages, isRead, id }));
-
-
-// });

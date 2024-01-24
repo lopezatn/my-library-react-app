@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../../features/books/bookSlice';
+import { removeBook } from '../../redux/slices/books/bookSlice';
 
 function DeleteItemButton(props) {
     const dispatch = useDispatch();

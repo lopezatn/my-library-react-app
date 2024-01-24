@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { changeState } from '../../features/books/bookSlice';
+import { changeState } from '../../redux/slices/books/bookSlice';
 
 function IsReadButton(props) {
   const dispatch = useDispatch();
