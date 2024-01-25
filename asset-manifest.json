@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lopezatn/my-library-react-app/static/css/main.5bc7fcbf.css",
+    "main.js": "/lopezatn/my-library-react-app/static/js/main.15a3c4c9.js",
+    "static/js/787.e0b82a93.chunk.js": "/lopezatn/my-library-react-app/static/js/787.e0b82a93.chunk.js",
+    "index.html": "/lopezatn/my-library-react-app/index.html",
+    "main.5bc7fcbf.css.map": "/lopezatn/my-library-react-app/static/css/main.5bc7fcbf.css.map",
+    "main.15a3c4c9.js.map": "/lopezatn/my-library-react-app/static/js/main.15a3c4c9.js.map",
+    "787.e0b82a93.chunk.js.map": "/lopezatn/my-library-react-app/static/js/787.e0b82a93.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5bc7fcbf.css",
+    "static/js/main.15a3c4c9.js"
+  ]
+}
