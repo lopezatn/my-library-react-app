@@ -11,7 +11,7 @@ function DeleteItemButton(props) {
     }
 
   return (
-    <button onClick={removeItem}>DELETE</button>
+    <button data-testid="remove-button-testid" onClick={removeItem}>DELETE</button>
     )
 }
 
