@@ -10,21 +10,7 @@ export const bookSlice = createSlice({
         pages: 399,
         isRead: false,
         id: 50,
-      },
-      {
-        author: "Stephen Hawkings",
-        title: "The theory of everything",
-        pages: 399,
-        isRead: false,
-        id: 50,
-      },
-      {
-        author: "Stephen Hawkings",
-        title: "The theory of everything",
-        pages: 399,
-        isRead: false,
-        id: 50,
-      },
+      }
     ],
   },
   reducers: {
