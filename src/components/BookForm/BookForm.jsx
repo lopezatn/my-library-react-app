@@ -11,8 +11,7 @@ function BookForm({ book, toggle }) {
   const [isRead, setIsRead] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(null);
   const isCreatingBook = book?.id === undefined;
-
-  console.log(isCreatingBook);
+  let newId = undefined;
 
   const restartFields = () => {
     setAuthor("");
@@ -23,7 +22,7 @@ function BookForm({ book, toggle }) {
   const handleSubmit = (e) => {
     if (isCreatingBook) {
       e.preventDefault();
-      const newId = Math.floor(Math.random() * 900);
+      newId = Math.floor(Math.random() * 900);
 
       if (
         author.length > 1 &&
@@ -34,6 +33,7 @@ function BookForm({ book, toggle }) {
         typeof pages === "number"
       ) {
         dispatch(addBook({ author, title, pages, isRead, id: newId }));
+        saveInLocalStorage();
         restartFields();
         setShowErrorMessage(false);
       } else {
@@ -58,6 +58,14 @@ function BookForm({ book, toggle }) {
 
     }
   };
+
+  const saveInLocalStorage = () => {
+    const storedData = localStorage.getItem('bookData');
+    const existingData = storedData ? JSON.parse(storedData) : [];
+    existingData.push({author, title, pages, isRead, id: newId});
+    localStorage.setItem('bookData', JSON.stringify(existingData));
+  }
+
 
   return (
     <form id="bookForm" className="book-form" onSubmit={handleSubmit}>
