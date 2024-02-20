@@ -61,9 +61,10 @@ function BookForm({ book, toggle }) {
 
   const saveInLocalStorage = () => {
     const storedData = localStorage.getItem('bookData');
-    const existingData = storedData ? JSON.parse(storedData) : [];
-    existingData.push({author, title, pages, isRead, id: newId});
+    const existingData = storedData ? JSON.parse(storedData) : {books: { booksList: [] }};
+    existingData.books.booksList.push({author, title, pages, isRead, id: newId});
     localStorage.setItem('bookData', JSON.stringify(existingData));
+    window.dispatchEvent(new Event('storage'));
   }
 
 

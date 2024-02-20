@@ -7,10 +7,9 @@ import ToggleFormButton from "../ToggleFormButton/ToggleFormButton";
 import BookForm from "../BookForm/BookForm";
 
 function BooksTable() {
-  // const books = useSelector((state) => state.books.booksList);
-  const books = JSON.parse(localStorage.getItem('bookData'));
-  console.log(books);
+  const books = useSelector((state) => state.books.booksList);
 
+  
   return (
     <div className="table-container">
       <table id="books-table">
