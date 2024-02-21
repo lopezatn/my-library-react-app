@@ -7,12 +7,11 @@ function DeleteItemButton(props) {
 
     const removeFromLocalStorage = () => {
       const storedData = localStorage.getItem('bookData');
-      const existingData = JSON.parse(storedData);
-
-      const indexToRemove = existingData.findIndex(book => book.id === props.id);
+      const existingData = storedData ? JSON.parse(storedData) : {books: { booksList: [] }};
+      const indexToRemove = existingData.books.booksList.findIndex(book => book.id === props.id);
 
       if (indexToRemove !== -1) {
-        existingData.splice(indexToRemove, 1);
+        existingData.books.booksList.splice(indexToRemove, 1);
         localStorage.setItem('bookData', JSON.stringify(existingData));
       } else {
         console.error('Index not found');
